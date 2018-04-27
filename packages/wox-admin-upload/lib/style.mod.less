@@ -1,0 +1,34 @@
+.wox-upload, .wox-reset-upload {
+
+  :global {
+    .ant-upload-list-item, .ant-upload {
+      width: 130px;
+      height: 130px;
+
+      &.ant-upload-list-item {
+        border-style: dashed;
+      }
+    }
+  }
+
+  &.wox-reset-upload {
+    :global {
+      .ant-upload {
+        border: 0;
+
+        &:hover {
+          border: 0;
+        }
+
+        > .ant-upload {
+          padding-top: 116px;
+          border: 0;
+          background: #fff;
+          line-height: 14px;
+          font-size: 14px;
+          color: #108ee9;
+        }
+      }
+    }
+  }
+}

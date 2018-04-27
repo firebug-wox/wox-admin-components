@@ -1,0 +1,13 @@
+{
+  "name": "wox-admin-font-awesome",
+  "version": "1.0.0",
+  "description": "font awesome for wox",
+  "main": "font-awesome.css",
+  "scripts": {
+  },
+  "keywords": [
+    "font",
+    "awesomw"
+  ],
+  "license": "MIT"
+}

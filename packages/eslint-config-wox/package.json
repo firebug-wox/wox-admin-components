@@ -1,0 +1,21 @@
+{
+  "name": "eslint-config-wox",
+  "version": "1.0.0",
+  "description": "eslint rules for wox",
+  "main": "index.js",
+  "keywords": [
+    "eslint",
+    "config",
+    "wox"
+  ],
+  "dependencies": {
+    "babel-eslint": "^7.2.3"
+  },
+  "peerDependencies": {
+    "eslint": "*",
+    "eslint-plugin-import": "*",
+    "eslint-plugin-jsx-a11y": "*",
+    "eslint-plugin-react": "*"
+  },
+  "license": "MIT"
+}
