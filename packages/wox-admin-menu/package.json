@@ -1,6 +1,6 @@
 {
   "name": "wox-admin-menu",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "wox menu component for admin",
   "main": "lib/index.js",
   "scripts": {
@@ -25,7 +25,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "classnames": "^2.2.5",
     "eslint": "^3.19.0",
-    "eslint-config-wox": "*",
+    "eslint-config-wox": "^1.0.1",
     "eslint-plugin-import": "^2.3.0",
     "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-react": "^7.0.1",
