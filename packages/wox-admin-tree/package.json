@@ -1,6 +1,6 @@
 {
   "name": "wox-admin-tree",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "react ui tree for drag limit",
   "main": "lib/index.js",
   "scripts": {
@@ -25,11 +25,11 @@
     "antd": "^3.0.0",
     "babel-cli": "^6.24.1",
     "babel-eslint": "^7.2.3",
-    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "eslint": "^3.19.0",
-    "eslint-config-wox": "^1.0.1",
+    "eslint-config-wox": "^1.0.2",
     "eslint-plugin-import": "^2.3.0",
     "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-react": "^7.0.1",

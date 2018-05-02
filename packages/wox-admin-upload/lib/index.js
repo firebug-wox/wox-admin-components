@@ -18,11 +18,11 @@ var _message3 = _interopRequireDefault(_message2);
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-require('antd/lib/upload/style/css');
+require('antd/lib/upload/style');
 
-require('antd/lib/icon/style/css');
+require('antd/lib/icon/style');
 
-require('antd/lib/message/style/css');
+require('antd/lib/message/style');
 
 var _react = require('react');
 

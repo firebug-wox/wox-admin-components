@@ -1,5 +1,12 @@
 {
-	"devDependencies": {
-		"lerna": "^2.9.0"
-	}
+  "name": "wox-admin-components",
+  "scripts": {
+    "build": "lerna run build",
+    "install": "lerna bootstrap",
+    "updated": "lerna updated",
+    "publish": "lerna publish"
+  },
+  "devDependencies": {
+    "lerna": "^2.9.0"
+  }
 }
