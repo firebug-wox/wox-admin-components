@@ -1,16 +1,38 @@
 import React, { Component } from 'react';
-import { Select, Form, Badge, DatePicker, Checkbox, Icon, Message, Popconfirm } from 'antd';      // 依赖的 `antd` 组件必须按照这种方式引入，不需要手动引用样式文件，`babel-plugin-import` 插件会自动引入
+import { Select, Form, Badge, DatePicker, Checkbox, Icon, Message, Popconfirm } from 'antd';
 import classNames from 'classnames/bind';
 import styles from './style.mod.less';
 import moment from 'moment';
-import { fromJS, toJS, set } from 'immutable';
+import { fromJS } from 'immutable';
 
 const cx = classNames.bind(styles);
 const Option = Select.Option;
 const FormItem = Form.Item;
 const CheckboxGroup = Checkbox.Group;
+const weekDays = [
+  {
+    label: '周一', value: 1
+  },
+  {
+    label: '周二', value: 2
+  },
+  {
+    label: '周三', value: 3
+  },
+  {
+    label: '周四', value: 4
+  },
+  {
+    label: '周五', value: 5
+  },
+  {
+    label: '周六', value: 6
+  },
+  {
+    label: '周日', value: 7
+  }
+];
 
-const weekDays = [{label:'周一',value: 1},{label: '周二',value: 2 },{label: '周三',value: 3},{label:'周四',value: 4},{label: '周五',value: 5}, {label:'周六',value:6},{label:'周日',value:7}];
 /**
  * 组件名遵循 `Wox` 前缀的规范
  */
@@ -21,28 +43,16 @@ class ItemRuleCom extends Component {
     this.state={
       endOpen: false
     };
-
-    this.onTypeChange = this.onTypeChange.bind(this);
-    this.onRangeDateChange = this.onRangeDateChange.bind(this);
-    this.disabledStartDate = this.disabledStartDate.bind(this);
-    this.disabledEndDate = this.disabledEndDate.bind(this);
-    this.handleStartOpenChange = this.handleStartOpenChange.bind(this);
-    this.handleEndOpenChange = this.handleEndOpenChange.bind(this);
-    this.onIncludeDateChange = this.onIncludeDateChange.bind(this);
-    this.onExcludeDateChange = this.onExcludeDateChange.bind(this);
-    this.onCheckAllChange = this.onCheckAllChange.bind(this);
-    this.onCheckboxChange = this.onCheckboxChange.bind(this);
-    this.deleteDateList = this.deleteDateList.bind(this);
-    this.deleteDateRule = this.deleteDateRule.bind(this);
   }
 
-  onTypeChange( type ){
-	  let dateExpressions = fromJS( this.props.dateExpressions ).toJS();
+  onTypeChange = (type) => {
+	  let dateExpressions = fromJS(this.props.dateExpressions).toJS();
 	  let index = this.props.num;
 	  let dateRule = fromJS( this.props.dateRule ).toJS();
 	  dateRule.type = type;
-	  switch(type){
-	  case '1':
+
+    switch(type) {
+    case '1':
 	    dateRule.includeDates = null;
 	    dateRule.excludeDates = null;
 	    dateRule.startDate = '';
@@ -67,85 +77,118 @@ class ItemRuleCom extends Component {
 	  dateExpressions = fromJS(dateExpressions).set(index, dateRule).toJS();
 	  this.props.handleCallBack({ dateExpressions });
   }
-  onRangeDateChange( key, dateString ){
-	  let dateExpressions = fromJS( this.props.dateExpressions ).toJS();
+
+  onRangeDateChange = (key, dateString) => {
+	  let dateExpressions = fromJS(this.props.dateExpressions).toJS();
 	  let index = this.props.num;
-	  dateExpressions = fromJS(dateExpressions).setIn([ index, key], dateString).toJS();
+	  dateExpressions = fromJS(dateExpressions).setIn([index, key], dateString).toJS();
 	  this.props.handleCallBack({ dateExpressions });
   }
-  disabledStartDate(startValue){
+
+  disabledStartDate = (startValue) => {
     const endValue = this.props.dateRule.endDate;
     if (!startValue || !endValue) {
       return false;
     }
     return startValue.valueOf() > (new Date(endValue)).getTime();
   }
-  disabledEndDate(endValue){
+
+  disabledEndDate = (endValue) => {
     const startValue = this.props.dateRule.startDate;
     if (!endValue || !startValue) {
       return false;
     }
     return endValue.valueOf() <= (new Date(startValue)).getTime();
   }
-  handleStartOpenChange(status){
-	  !status && this.setState({ endOpen: true });
+
+  handleStartOpenChange = (status) => {
+    if (!status) {
+      this.setState({
+        endOpen: true
+      });
+    }
   }
-  handleEndOpenChange(status){
-	  this.setState({endOpen: status});
+
+  handleEndOpenChange = (status) => {
+    this.setState({
+      endOpen: status
+    });
   }
-  onIncludeDateChange( moment, dateString ){
-	  let dateExpressions = fromJS( this.props.dateExpressions ).toJS();
+
+  onIncludeDateChange = (moment, dateString) => {
+	  let dateExpressions = fromJS(this.props.dateExpressions).toJS();
 	  let index = this.props.num;
-	  let dateRule = fromJS( this.props.dateRule ).toJS();
-	  if( dateRule.includeDates.indexOf(dateString) < 0 ){
-	    dateRule.includeDates.push( dateString );
+	  let dateRule = fromJS(this.props.dateRule).toJS();
+
+    if (dateRule.includeDates.indexOf(dateString) < 0) {
+	    dateRule.includeDates.push(dateString);
 	    dateExpressions = fromJS(dateExpressions).set(index, dateRule).toJS();
-	    this.props.handleCallBack({ dateExpressions });
-	  }else{
+      this.props.handleCallBack({
+        dateExpressions
+      });
+	  } else {
 	    Message.error('您已选择了该日期', 3);
 	  }
   }
-  onExcludeDateChange( moment, dateString ){
-	  let dateExpressions = fromJS( this.props.dateExpressions ).toJS();
+
+  onExcludeDateChange = (moment, dateString) => {
+	  let dateExpressions = fromJS(this.props.dateExpressions).toJS();
 	  let index = this.props.num;
-	  let dateRule = fromJS( this.props.dateRule ).toJS();
-	  if( dateRule.excludeDates.indexOf(dateString) < 0 ){
-	    dateRule.excludeDates.push( dateString );
+	  let dateRule = fromJS(this.props.dateRule).toJS();
+
+    if (dateRule.excludeDates.indexOf(dateString) < 0) {
+	    dateRule.excludeDates.push(dateString);
 	    dateExpressions = fromJS(dateExpressions).set(index, dateRule).toJS();
-	    this.props.handleCallBack({ dateExpressions });
-	  }else{
+      this.props.handleCallBack({
+        dateExpressions
+      });
+	  } else {
 	    Message.error('您已选择了该日期', 3);
 	  }
   }
-  onCheckAllChange(){
-	  let dateExpressions = fromJS( this.props.dateExpressions ).toJS();
-	  let dateRule = fromJS( this.props.dateRule ).toJS();
+
+  onCheckAllChange = () => {
+	  let dateExpressions = fromJS(this.props.dateExpressions).toJS();
+	  let dateRule = fromJS(this.props.dateRule).toJS();
 	  dateRule.weekDays = dateRule.weekDays.length == 7 ? [] : [1 , 2 ,3 ,4 ,5 , 6, 7];
-	  dateExpressions = fromJS( dateExpressions ).set(this.props.num, dateRule).toJS();
-	  this.props.handleCallBack({ dateExpressions });
+	  dateExpressions = fromJS(dateExpressions).set(this.props.num, dateRule).toJS();
+    this.props.handleCallBack({
+      dateExpressions
+    });
   }
-  onCheckboxChange( weekDays ){
-	  let dateExpressions = fromJS( this.props.dateExpressions ).toJS();
-	  let dateRule = fromJS( this.props.dateRule ).toJS();
+
+  onCheckboxChange = (weekDays) => {
+	  let dateExpressions = fromJS(this.props.dateExpressions).toJS();
+	  let dateRule = fromJS(this.props.dateRule).toJS();
 	  dateRule.weekDays = weekDays;
-	  dateExpressions = fromJS( dateExpressions ).set(this.props.num, dateRule).toJS();
-	  this.props.handleCallBack({ dateExpressions });
+	  dateExpressions = fromJS(dateExpressions).set(this.props.num, dateRule).toJS();
+    this.props.handleCallBack({
+      dateExpressions
+    });
   }
-  deleteDateList( type, index ){
-	  let dateExpressions = fromJS( this.props.dateExpressions ).toJS();
-	  dateExpressions = fromJS( dateExpressions ).deleteIn([ this.props.num, type, index ]).toJS();
-	  this.props.handleCallBack({ dateExpressions });
+
+  deleteDateList = (type, index) => {
+	  let dateExpressions = fromJS(this.props.dateExpressions).toJS();
+	  dateExpressions = fromJS(dateExpressions).deleteIn([this.props.num, type, index]).toJS();
+    this.props.handleCallBack({
+      dateExpressions
+    });
   }
-  deleteDateRule(index){
-	  let dateExpressions = fromJS( this.props.dateExpressions ).toJS();
-	  dateExpressions = fromJS( dateExpressions ).delete( index ).toJS();
-	  this.props.handleCallBack({ dateExpressions });
+
+  deleteDateRule = (index) => {
+	  let dateExpressions = fromJS(this.props.dateExpressions).toJS();
+	  dateExpressions = fromJS(dateExpressions).delete(index).toJS();
+    this.props.handleCallBack({
+      dateExpressions
+    });
   }
+
   render() {
 	  const { dateRule } = this.props;
 	  const checkAll = dateRule.weekDays && dateRule.weekDays.length == 7 ? true : false;
 	  const startDate = dateRule.startDate ? moment(dateRule.startDate, 'YYYY-MM-DD') : null;
 	  const endDate = dateRule.endDate ? moment(dateRule.endDate, 'YYYY-MM-DD') : null;
+
 	  return (
 	    <Form layout="inline" className={cx('item-rule')}>
 	      <FormItem className={cx('item-rule-th')}>
@@ -225,5 +268,6 @@ class ItemRuleCom extends Component {
   }
 }
 
-const WoxDateRule = Form.create()( ItemRuleCom );
+const WoxDateRule = Form.create()(ItemRuleCom);
+
 export default WoxDateRule;

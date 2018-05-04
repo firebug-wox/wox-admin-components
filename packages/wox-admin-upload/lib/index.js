@@ -44,8 +44,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-// import PropTypes from 'prop-types';
-
 var cx = _bind2.default.bind(_styleMod2.default);
 
 var WoxUpload = function (_Component) {
@@ -59,8 +57,13 @@ var WoxUpload = function (_Component) {
     _this.handlePicChange = function (e) {
       var list = e.fileList.map(function (val) {
         var req = val.response;
+
         if (req) {
-          if (req.rs === 1) val.url = val.response.data.url;else _message3.default.error(val.response.msg, 3);
+          if (req.rs === 1) {
+            val.url = val.response.data.url;
+          } else {
+            _message3.default.error(val.response.msg, 3);
+          }
         }
         return val;
       });
@@ -78,7 +81,9 @@ var WoxUpload = function (_Component) {
         }
         var max = _this.state.max;
 
-        _this.setState({ fileList: list.length ? max > 1 ? list : list.splice(-1) : [] });
+        _this.setState({
+          fileList: list.length ? max > 1 ? list : list.splice(-1) : []
+        });
       }
     };
 
@@ -91,6 +96,7 @@ var WoxUpload = function (_Component) {
       var isJPG = (imgType || defaultType).find(function (val) {
         return file.type === 'image/' + val;
       });
+
       if (!isJPG) {
         _message3.default.error('You can only upload ' + (imgType || defaultType).join('/') + ' file!', 3);
         return false;
@@ -105,6 +111,7 @@ var WoxUpload = function (_Component) {
 
     _this.triggerChange = function (list) {
       var onChange = _this.props.onChange;
+
       if (onChange) {
         var max = _this.state.max;
 
@@ -134,6 +141,7 @@ var WoxUpload = function (_Component) {
         var fileList = this.state.fileList.map(function (val) {
           return val.url;
         });
+
         if (JSON.stringify(value) === JSON.stringify(fileList)) {
           return;
         }
@@ -153,6 +161,7 @@ var WoxUpload = function (_Component) {
           fileList = _state.fileList,
           max = _state.max;
 
+
       return _react2.default.createElement(
         _upload2.default,
         {
@@ -167,7 +176,7 @@ var WoxUpload = function (_Component) {
           'span',
           null,
           _react2.default.createElement(_icon2.default, { type: 'cloud-upload', style: { fontSize: '18px' } }),
-          ' \u91CD\u65B0\u4E0A\u4F20'
+          '\u91CD\u65B0\u4E0A\u4F20'
         ) : fileList.length < max ? _react2.default.createElement(
           'div',
           null,
@@ -175,7 +184,7 @@ var WoxUpload = function (_Component) {
           _react2.default.createElement(
             'div',
             { className: 'ant-upload-text' },
-            'Upload'
+            '\u4E0A\u4F20'
           )
         ) : null
       );
@@ -184,13 +193,5 @@ var WoxUpload = function (_Component) {
 
   return WoxUpload;
 }(_react.Component);
-
-// WoxUpload.propTypes = {
-//   value: PropTypes.string,
-// };
-
-// WoxUpload.defaultProps = {
-//   status: 'off',
-// };
 
 exports.default = WoxUpload;

@@ -46,16 +46,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * urlFn[Function]					          // 数据请求url参数拼接函数
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * callback[Function]					        // 回调函数
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * initData[Array[Object]] : {key:xxx, vlabel: xxx}  	// 初始传入数据
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * keyName[String]  					        // 返回数据的key值
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * singleType[Boolean]					      // 是否单选模式，初始传入
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * disabled[Boolean]					        // 是否只读
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * formatDataFn[function]             // 格式化获取数据函数
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * formatLabelFn[function]            // 格式化展示数据函数
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               **/
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var Option = _select2.default.Option;
 
@@ -65,61 +56,71 @@ var WoxGtourAutoComplete = function (_Component) {
   function WoxGtourAutoComplete(props) {
     _classCallCheck(this, WoxGtourAutoComplete);
 
-    var _this2 = _possibleConstructorReturn(this, (WoxGtourAutoComplete.__proto__ || Object.getPrototypeOf(WoxGtourAutoComplete)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (WoxGtourAutoComplete.__proto__ || Object.getPrototypeOf(WoxGtourAutoComplete)).call(this, props));
 
-    _this2.fetchData = (0, _lodash2.default)(_this2.fetchData, 500);
-    _this2.state = { data: [], value: [], fetching: false };
-    _this2.fetchData = _this2.fetchData.bind(_this2);
-    _this2.handleChange = _this2.handleChange.bind(_this2);
-    return _this2;
-  }
-
-  _createClass(WoxGtourAutoComplete, [{
-    key: 'fetchData',
-    value: function fetchData(value) {
+    _this.fetchData = function (value) {
       if (!/^\s*$/.test(value)) {
-        this.setState({ fetching: true });
-        var _this = this,
-            _props = this.props,
-            urlFn = _props.urlFn,
-            formatDataFn = _props.formatDataFn;
+        var _this$props = _this.props,
+            urlFn = _this$props.urlFn,
+            formatDataFn = _this$props.formatDataFn;
+
+
+        _this.setState({
+          fetching: true
+        });
         (0, _reqwest2.default)({
           url: urlFn(value),
           contentType: 'application/json',
           success: function success(res) {
             if (res.rs === 1) {
               var formatData = formatDataFn ? formatDataFn(res.data, value) : res.data;
-              _this.setState({ data: formatData, fetching: false });
+              _this.setState({
+                data: formatData,
+                fetching: false
+              });
             } else {
               _message2.default.error('查询数据失败！', 3);
             }
           }
         });
       }
-    }
-  }, {
-    key: 'handleChange',
-    value: function handleChange(value) {
-      this.setState({ data: [], fetching: false });
-      var _props2 = this.props,
-          _props2$singleType = _props2.singleType,
-          singleType = _props2$singleType === undefined ? false : _props2$singleType,
-          formatLabelFn = _props2.formatLabelFn,
-          callback = _props2.callback;
+    };
 
+    _this.handleChange = function (value) {
+      var _this$props2 = _this.props,
+          _this$props2$singleTy = _this$props2.singleType,
+          singleType = _this$props2$singleTy === undefined ? false : _this$props2$singleTy,
+          formatLabelFn = _this$props2.formatLabelFn,
+          callback = _this$props2.callback;
+
+
+      _this.setState({
+        data: [],
+        fetching: false
+      });
       if (singleType && value.length > 0) {
         value = [value[value.length - 1]];
       }
-      // 修改 label 展示方式
-      var formatLabel = formatLabelFn ? formatLabelFn(value) : value;
-      callback(_defineProperty({}, this.props.keyName, formatLabel));
-    }
-  }, {
+      var formatLabel = formatLabelFn ? formatLabelFn(value) : value; // 修改 label 展示方式
+      callback(_defineProperty({}, _this.props.keyName, formatLabel));
+    };
+
+    _this.fetchData = (0, _lodash2.default)(_this.fetchData, 500);
+    _this.state = {
+      data: [],
+      value: [],
+      fetching: false
+    };
+    return _this;
+  }
+
+  _createClass(WoxGtourAutoComplete, [{
     key: 'render',
     value: function render() {
       var _state = this.state,
           fetching = _state.fetching,
           data = _state.data;
+
 
       return _react2.default.createElement(
         _select2.default,
@@ -135,11 +136,11 @@ var WoxGtourAutoComplete = function (_Component) {
           disabled: !!this.props.disabled,
           style: _extends({ width: '600px' }, this.props.style || {})
         },
-        data.map(function (d, i) {
+        data.map(function (item, index) {
           return _react2.default.createElement(
             Option,
-            { key: d.key },
-            d.label
+            { key: item.key },
+            teim.label
           );
         })
       );

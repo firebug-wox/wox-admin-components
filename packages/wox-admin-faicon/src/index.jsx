@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 
 const WoxFaIcon = ({ type, title, style, onClick }) => (
   <span className={cx('wox-icon')}>
-    <i className={`fa ${type}`} title={title} style={style} onClick={onClick}  />
+    <i className={`fa ${type}`} title={title} style={style} onClick={onClick} />
   </span>
 );
 

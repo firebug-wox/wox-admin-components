@@ -31,14 +31,17 @@ var WoxQueryForm = function WoxQueryForm(InfosForm) {
     _inherits(HOCInfosForm, _Component);
 
     function HOCInfosForm() {
+      var _ref;
+
+      var _temp, _this, _ret;
+
       _classCallCheck(this, HOCInfosForm);
 
-      return _possibleConstructorReturn(this, (HOCInfosForm.__proto__ || Object.getPrototypeOf(HOCInfosForm)).apply(this, arguments));
-    }
+      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
 
-    _createClass(HOCInfosForm, [{
-      key: 'setUrlParams',
-      value: function setUrlParams(values) {
+      return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = HOCInfosForm.__proto__ || Object.getPrototypeOf(HOCInfosForm)).call.apply(_ref, [this].concat(args))), _this), _this.setUrlParams = function (values) {
         // 获取表单数据，转化成 url 参数
         var keys = Object.keys(values);
         var queryStr = [];
@@ -47,7 +50,7 @@ var WoxQueryForm = function WoxQueryForm(InfosForm) {
           if (!!values[key]) {
             if (_typeof(values[key]) === 'object') {
               if (!(Array.isArray(values[key]) && !values[key].length)) {
-                // 空数组不做  URL 拼接处理
+                // 空数组不做 URL 拼接处理
                 queryStr.push(key + '=' + encodeURIComponent(JSON.stringify(values[key])));
               }
             } else {
@@ -57,10 +60,7 @@ var WoxQueryForm = function WoxQueryForm(InfosForm) {
         });
 
         history.pushState({}, document.title, location.href.split('?')[0] + '?' + queryStr.join('&'));
-      }
-    }, {
-      key: 'getUrlParams',
-      value: function getUrlParams() {
+      }, _this.getUrlParams = function () {
         // 获取 url 参数，转换成表单数据
         var reg = /^(?:[^?]*\?)?([\w\d\-=&%]+)/;
         var matchArr = window.location.href.match(reg);
@@ -81,8 +81,10 @@ var WoxQueryForm = function WoxQueryForm(InfosForm) {
 
           return query;
         }, {});
-      }
-    }, {
+      }, _temp), _possibleConstructorReturn(_this, _ret);
+    }
+
+    _createClass(HOCInfosForm, [{
       key: 'render',
       value: function render() {
         var others = _objectWithoutProperties(this.props, []);

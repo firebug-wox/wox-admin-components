@@ -2,51 +2,59 @@ import React, { Component } from 'react';
 import { Upload, Icon, message } from 'antd';
 import classNames from 'classnames/bind';
 import styles from './style.mod.less';
-// import PropTypes from 'prop-types';
 
 const cx = classNames.bind(styles);
 
 class WoxUpload extends Component {
   constructor(props) {
     super(props);
+
     const value = this.props.value || [];
     this.state = {
-      fileList: value instanceof Array ? value.map((v,i)=>({
+      fileList: value instanceof Array ? value.map((v, i) => ({
         uid: -i, name: 'logo', status: 'done', url: v
       })) : [{ uid: -1, name: 'logo', status: 'done', url: value }],
       max: this.props.max ? this.props.max : 1
     };
   }
+
   handlePicChange = (e) => {
     let list = e.fileList.map((val) => {
       const req = val.response;
-      if ( req ) {
-        if ( req.rs === 1 ) val.url = val.response.data.url
-        else message.error(val.response.msg, 3);
+
+      if (req) {
+        if (req.rs === 1) {
+          val.url = val.response.data.url
+        } else {
+          message.error(val.response.msg, 3);
+        }
       }
       return val;
     });
 
-    if ( e.file.status ) {
-      if (e.file.status === 'done'){
+    if (e.file.status) {
+      if (e.file.status === 'done') {
         list = list.filter(val => val.response ? val.response.rs === 1 : true);
-        if(e.file.response.rs === 1){
+        if (e.file.response.rs === 1) {
           this.triggerChange(list);
         }
       } else if (e.file.status === 'removed') {
         this.triggerChange(list);
       }
       const { max } = this.state;
-      this.setState({ fileList: list.length ? (max > 1 ? list : list.splice(-1)) : [] });
+      this.setState({
+        fileList: list.length ? (max > 1 ? list : list.splice(-1)) : []
+      });
     }
   }
 
   beforeUpload = (file) => {
     const { imgType, imgSize } = this.props;
     const defaultType = ['jpeg', 'png', 'jpg', 'gif'];
-    const isJPG = (imgType || defaultType).find(val=>{
+    const isJPG = (imgType || defaultType).find(val => {
       return file.type === `image/${val}`;
     });
+
     if (!isJPG) {
       message.error(`You can only upload ${(imgType || defaultType).join('/')} file!`, 3);
       return false;
@@ -62,12 +70,13 @@ class WoxUpload extends Component {
   componentWillReceiveProps(nextProps) {
     if ('value' in nextProps) {
       const value = nextProps.value || [];
-      const fileList = this.state.fileList.map(val=>val.url);
-      if( JSON.stringify(value) === JSON.stringify(fileList)){
+      const fileList = this.state.fileList.map(val => val.url);
+
+      if (JSON.stringify(value) === JSON.stringify(fileList)) {
         return;
       }
       this.setState({
-        fileList: value instanceof Array ? value.map((v,i)=>({
+        fileList: value instanceof Array ? value.map((v, i) => ({
           uid: -i, name: 'logo', status: 'done', url: v
         })) : [{ uid: -1, name: 'logo', status: 'done', url: value }]
       });
@@ -76,6 +85,7 @@ class WoxUpload extends Component {
 
   triggerChange = (list) => {
     const onChange = this.props.onChange;
+
     if (onChange) {
       const { max } = this.state;
       onChange(max > 1 ? list.map(val=> val.url) : (list.length ? list[list.length - 1].url : ''));
@@ -84,6 +94,7 @@ class WoxUpload extends Component {
 
   render() {
     const { fileList, max } = this.state;
+
     return(
       <Upload
         action={this.props.action}
@@ -95,12 +106,12 @@ class WoxUpload extends Component {
       >
         {
           max === 1 && fileList.length ? (
-            <span><Icon type="cloud-upload" style={{fontSize: '18px'}} /> 重新上传</span>
+            <span><Icon type="cloud-upload" style={{fontSize: '18px'}} />重新上传</span>
           ) : (
             fileList.length < max ? (
               <div>
                 <Icon type="plus" />
-                <div className="ant-upload-text">Upload</div>
+                <div className="ant-upload-text">上传</div>
               </div>
             ) : null
           )
@@ -109,13 +120,5 @@ class WoxUpload extends Component {
     )
   }
 }
-
-// WoxUpload.propTypes = {
-//   value: PropTypes.string,
-// };
-
-// WoxUpload.defaultProps = {
-//   status: 'off',
-// };
 
 export default WoxUpload;
