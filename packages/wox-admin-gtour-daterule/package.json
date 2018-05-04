@@ -1,6 +1,6 @@
 {
   "name": "wox-admin-gtour-daterule",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "basic react component",
   "main": "lib/index.js",
   "scripts": {
