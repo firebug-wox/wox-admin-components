@@ -1,6 +1,6 @@
 {
   "name": "wox-admin-faicon",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "wox icon component for admin",
   "main": "lib/index.js",
   "scripts": {
