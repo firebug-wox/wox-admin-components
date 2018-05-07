@@ -140,7 +140,7 @@ var WoxAutoComplete = function (_Component) {
           return _react2.default.createElement(
             Option,
             { key: item.key },
-            teim.label
+            item.label
           );
         })
       );

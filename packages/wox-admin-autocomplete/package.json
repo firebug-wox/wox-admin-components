@@ -1,6 +1,6 @@
 {
   "name": "wox-admin-autocomplete",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "basic react component",
   "main": "lib/index.js",
   "scripts": {

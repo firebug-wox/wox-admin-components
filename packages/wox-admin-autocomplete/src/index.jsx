@@ -75,7 +75,7 @@ export default class WoxAutoComplete extends Component {
         {
           data.map((item, index) => {
             return (
-              <Option key={item.key}>{teim.label}</Option>
+              <Option key={item.key}>{item.label}</Option>
             );
           })
         }

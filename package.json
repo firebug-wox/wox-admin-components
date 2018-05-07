@@ -4,7 +4,7 @@
     "build": "lerna run build",
     "install": "lerna bootstrap",
     "updated": "lerna updated",
-    "publish": "lerna publish"
+    "publish": "git add . && lerna publish"
   },
   "devDependencies": {
     "lerna": "^2.9.0"
