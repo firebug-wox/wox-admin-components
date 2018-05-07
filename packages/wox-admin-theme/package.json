@@ -1,6 +1,6 @@
 {
   "name": "wox-admin-theme",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "basic react component",
   "main": "lib/index.js",
   "scripts": {
@@ -25,7 +25,7 @@
     "classnames": "^2.2.5",
     "css-loader": "^0.28.8",
     "eslint": "^3.19.0",
-    "eslint-config-wox": "^1.0.2",
+    "eslint-config-wox": "^1.0.3",
     "eslint-plugin-import": "^2.3.0",
     "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-react": "^7.0.1",
@@ -43,7 +43,7 @@
     "webpack": "^3.0.0",
     "webpack-dashboard": "^1.0.2",
     "webpack-dev-server": "^2.0.0",
-    "wox-admin-title": "^1.0.8"
+    "wox-admin-title": "^1.0.9"
   },
   "license": "MIT"
 }

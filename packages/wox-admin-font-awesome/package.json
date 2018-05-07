@@ -1,6 +1,6 @@
 {
   "name": "wox-admin-font-awesome",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "font awesome for wox",
   "main": "font-awesome.css",
   "scripts": {},
