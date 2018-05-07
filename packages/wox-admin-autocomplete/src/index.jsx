@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Select, Spin, Message } from 'antd';
 import debounce from 'lodash.debounce';
-import reqwest from 'reqwest';
+import axios from 'axios';
 
 const Option = Select.Option;
 
-export default class WoxGtourAutoComplete extends Component {
+export default class WoxAutoComplete extends Component {
   constructor(props) {
     super(props);
 
@@ -20,25 +20,23 @@ export default class WoxGtourAutoComplete extends Component {
   fetchData = (value) => {
     if (!/^\s*$/.test(value)) {
       const { urlFn, formatDataFn } = this.props;
-
       this.setState({
         fetching: true
       });
-      reqwest({
+      axios({
         url: urlFn(value),
-        contentType: 'application/json',
-        success: (res) => {
-          if (res.rs === 1) {
-            const formatData = formatDataFn ? formatDataFn(res.data, value) : res.data;
-            this.setState({
-              data: formatData,
-              fetching: false
-            });
-          } else {
-            Message.error('查询数据失败！', 3);
-          }
+        headers: {'Content-Type': 'application/json'},
+      }).then(({ data: res }) => {
+        if (res.rs === 1) {
+          const formatData = formatDataFn ? formatDataFn(res.data, value) : res.data;
+          this.setState({
+            data: formatData,
+            fetching: false
+          });
+        } else {
+          Message.error('查询数据失败！', 3);
         }
-      })
+      });
     }
   }
 

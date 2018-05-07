@@ -34,9 +34,9 @@ var _lodash = require('lodash.debounce');
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
-var _reqwest = require('reqwest');
+var _axios = require('axios');
 
-var _reqwest2 = _interopRequireDefault(_reqwest);
+var _axios2 = _interopRequireDefault(_axios);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -50,13 +50,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var Option = _select2.default.Option;
 
-var WoxGtourAutoComplete = function (_Component) {
-  _inherits(WoxGtourAutoComplete, _Component);
+var WoxAutoComplete = function (_Component) {
+  _inherits(WoxAutoComplete, _Component);
 
-  function WoxGtourAutoComplete(props) {
-    _classCallCheck(this, WoxGtourAutoComplete);
+  function WoxAutoComplete(props) {
+    _classCallCheck(this, WoxAutoComplete);
 
-    var _this = _possibleConstructorReturn(this, (WoxGtourAutoComplete.__proto__ || Object.getPrototypeOf(WoxGtourAutoComplete)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (WoxAutoComplete.__proto__ || Object.getPrototypeOf(WoxAutoComplete)).call(this, props));
 
     _this.fetchData = function (value) {
       if (!/^\s*$/.test(value)) {
@@ -64,23 +64,23 @@ var WoxGtourAutoComplete = function (_Component) {
             urlFn = _this$props.urlFn,
             formatDataFn = _this$props.formatDataFn;
 
-
         _this.setState({
           fetching: true
         });
-        (0, _reqwest2.default)({
+        (0, _axios2.default)({
           url: urlFn(value),
-          contentType: 'application/json',
-          success: function success(res) {
-            if (res.rs === 1) {
-              var formatData = formatDataFn ? formatDataFn(res.data, value) : res.data;
-              _this.setState({
-                data: formatData,
-                fetching: false
-              });
-            } else {
-              _message2.default.error('查询数据失败！', 3);
-            }
+          headers: { 'Content-Type': 'application/json' }
+        }).then(function (_ref) {
+          var res = _ref.data;
+
+          if (res.rs === 1) {
+            var formatData = formatDataFn ? formatDataFn(res.data, value) : res.data;
+            _this.setState({
+              data: formatData,
+              fetching: false
+            });
+          } else {
+            _message2.default.error('查询数据失败！', 3);
           }
         });
       }
@@ -114,7 +114,7 @@ var WoxGtourAutoComplete = function (_Component) {
     return _this;
   }
 
-  _createClass(WoxGtourAutoComplete, [{
+  _createClass(WoxAutoComplete, [{
     key: 'render',
     value: function render() {
       var _state = this.state,
@@ -147,7 +147,7 @@ var WoxGtourAutoComplete = function (_Component) {
     }
   }]);
 
-  return WoxGtourAutoComplete;
+  return WoxAutoComplete;
 }(_react.Component);
 
-exports.default = WoxGtourAutoComplete;
+exports.default = WoxAutoComplete;
