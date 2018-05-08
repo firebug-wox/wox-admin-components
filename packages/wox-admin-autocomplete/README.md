@@ -8,57 +8,74 @@
 | ---- | ---- | ---- | ---- | ---- |
 | urlFn | 是 | 自定义请求URL `必填` | Function(value) |  |
 | initData | 是 | 初始传入数据 | Array：[{key: xxx, label: xxx}] |  |
+| placeholder | 否 | 占位文案 | String | '搜索' |
 | keyName | 是 | 返回数据的key值，用户选择数据后 `{keyName: data}` 以这种形式返回选择的数据 `必填` | String | |
 | disabled | 否 | 是否只读 | Boolean | false |
 | singleType | 否 | 是否单选模式 | Boolean | false |
 | callback | 是 | 用户选择数据后回调函数 | Function({keyName: value}) | |
 | formatDataFn | 是 | 自定义组件渲染数据，数据格式为: [{key: xxx, label: xxx}] | Function(res.data, keyword) | |
 | formatLabelFn | 否 | 自定义组件展示数据，数据格式为: [{key: xxx, label: xxx}] | Function(value) | |
+| style | 否 | 自定义样式 | Object |  |
 
+#### formatDataFn
 
-### formatDataFn demo
+自定义组件渲染数据
 
 ```javascript
+formatDataFn: (values, keyword) => {
+  const hotelsArr = values.map(value => ({
+    key: value.id,
+    label: `${value.id} - ${value.nameCN}`
+  }));
 
-  // 自定义组件渲染数据
-  formatDataFn: function(val, keyword) {
-    let hotelsArr = val.map(v => ({ key: v.id, label: `${v.id} - ${v.nameCN}`}));
-    return [
-      ...hotelsArr, 
-      {key: keyword, label: keyword},
-      {key: '或同级', label: '或同级'}
-    ];
-  }
-
+  return [
+    ...hotelsArr,
+    { key: keyword, label: keyword },
+    { key: '或同级', label: '或同级' }
+  ];
+}
 ```
 
-### formatLabelFn demo
+#### formatLabelFn
+
+自定义组件展示数据
 
 ```javascript
-
-  // 自定义组件展示数据
-  formatLabelFn: function(val) {
-    return val.map(v => ({ key: v.id, label: `自定义展示LABEL: ${v.id} - ${v.name}`}));
-  }
+formatLabelFn: (values) => {
+  return values.map(value => ({
+    key: value.id,
+    label: `自定义展示LABEL: ${value.id} - ${value.name}`
+  }));
+}
 
 ```
 
 ## Usage
 
 ```javascript
-
 import WoxAutoComplete from 'wox-admin-autocomplete';
 
 <WoxAutoComplete
-  url={(v)=>`url?key=${v}`}
-  callback={this.props.callback}
+  urlFn={(keyString) => `url?key=${keyString}`}
   initData={this.props.data.startLocationInfos}
+  placeholder="搜索酒店"
   keyName='keyName'
-  // singleType={true}
-  // disabled={true}
-  formatDataFn={(val, keyword)=>val.map(v=>({key: v.id, label: v.name}))}
-  formatLabelFn={(val)=>val.map(v=>({key: v.id, label: `【${v.id}】v.name`}))}
-  style={{width: 400}}
+  disabled={false}
+  singleType={true}
+  callback={this.props.callback}
+  formatDataFn={(values, keyword) => {
+    return values.map(value => ({
+      key: value.id,
+      label: value.name
+    }));
+  }}
+  formatLabelFn={(values) => {
+    return values.map(value => ({
+      key: value.id,
+      label: `【${value.id}】v.name`
+    }));
+  }}
+  style={{width: '400px'}}
 />
 
 ```

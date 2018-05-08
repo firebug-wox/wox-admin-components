@@ -1,6 +1,6 @@
 {
   "name": "wox-admin-query-form",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "basic react component",
   "main": "lib/index.js",
   "scripts": {
@@ -48,7 +48,7 @@
     "webpack": "^3.0.0",
     "webpack-dashboard": "^1.0.2",
     "webpack-dev-server": "^2.0.0",
-    "wox-admin-autocomplete": "^1.0.4"
+    "wox-admin-autocomplete": "^1.0.5"
   },
   "peerDependencies": {
     "antd": "^3.0.0",
