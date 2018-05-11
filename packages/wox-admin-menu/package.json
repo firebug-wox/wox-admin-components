@@ -1,6 +1,6 @@
 {
   "name": "wox-admin-menu",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "wox menu component for admin",
   "main": "lib/index.js",
   "scripts": {
