@@ -1,0 +1,36 @@
+.wrapper {
+  :global {
+    .ant-table {
+
+      .ant-table-body {
+        background: #fff;
+
+        table {
+          border-radius: 0;
+
+          .ant-table-thead {
+
+            >tr:first-child {
+
+              >th:last-child {
+                border-top-right-radius: 0;
+              }
+            }
+          }
+
+          .ant-table-row {
+            background: #fff;
+
+            &.odd {
+              background: #eee;
+            }
+            
+            &.even {
+              background: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+}
