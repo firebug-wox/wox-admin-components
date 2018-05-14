@@ -30,8 +30,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // 依赖的 `antd` 组件必须按照这种方式引入，不需要手动引用样式文件，`babel-plugin-import` 插件会自动引入
 
-// import PropTypes from 'prop-types';
-
 
 var cx = _bind2.default.bind(_styleMod2.default);
 
@@ -39,27 +37,28 @@ var cx = _bind2.default.bind(_styleMod2.default);
  * 组件名遵循 `Wox` 前缀的规范
  */
 
-var WoxTableCom = function (_Component) {
-  _inherits(WoxTableCom, _Component);
+var WoxTable = function (_Component) {
+  _inherits(WoxTable, _Component);
 
-  function WoxTableCom(props) {
-    _classCallCheck(this, WoxTableCom);
+  function WoxTable() {
+    var _temp, _this, _ret;
 
-    var _this = _possibleConstructorReturn(this, _Component.call(this, props));
+    _classCallCheck(this, WoxTable);
 
-    _this.setRowClassName = function (record, index) {
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.setRowClassName = function (record, index) {
       if (index % 2) {
         return 'odd';
       } else {
         return 'even';
       }
-    };
-
-    _this.state = {};
-    return _this;
+    }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
-  WoxTableCom.prototype.render = function render() {
+  WoxTable.prototype.render = function render() {
     var attrs = {};
     var rowClassName = {
       rowClassName: this.props.rowColorDifferent && this.props.rowColorDifferent === true ? this.setRowClassName : function () {}
@@ -76,15 +75,7 @@ var WoxTableCom = function (_Component) {
     );
   };
 
-  return WoxTableCom;
+  return WoxTable;
 }(_react.Component);
 
-// WoxTableCom.propTypes = {
-//   status: PropTypes.string,
-// };
-
-// WoxTableCom.defaultProps = {
-//   status: 'off',
-// };
-
-exports.default = WoxTableCom;
+exports.default = WoxTable;
