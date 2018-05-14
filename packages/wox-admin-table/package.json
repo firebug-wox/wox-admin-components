@@ -1,5 +1,5 @@
 {
-  "name": "react-component",
+  "name": "wox-admin-table",
   "version": "1.0.0",
   "description": "basic react component",
   "main": "lib/index.js",
