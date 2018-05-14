@@ -9,7 +9,6 @@ const cx = classNames.bind(styles);
  * 组件名遵循 `Wox` 前缀的规范
  */
 class WoxTable extends Component {
-
   setRowClassName = (record, index) => {
     if (index % 2) {
       return 'odd';
@@ -21,13 +20,15 @@ class WoxTable extends Component {
   render() {
     let attrs = {};
     const rowClassName = {
-      rowClassName: this.props.rowColorDifferent && (this.props.rowColorDifferent === true) ? this.setRowClassName : ()=>{}
+      rowClassName: this.props.rowColorDifferent && (this.props.rowColorDifferent === true) ? this.setRowClassName : () => {}
     };
+
     if (this.props.rowClassName) {
       attrs = { ...this.props };
     } else {
-      attrs = Object.assign({ ...this.props }, rowClassName);      
+      attrs = Object.assign({ ...this.props }, rowClassName);
     }
+    
     return (
       <div className={cx('wrapper')}>
         <Table { ...attrs } />

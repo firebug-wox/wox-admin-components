@@ -63,11 +63,13 @@ var WoxTable = function (_Component) {
     var rowClassName = {
       rowClassName: this.props.rowColorDifferent && this.props.rowColorDifferent === true ? this.setRowClassName : function () {}
     };
+
     if (this.props.rowClassName) {
       attrs = _extends({}, this.props);
     } else {
       attrs = Object.assign(_extends({}, this.props), rowClassName);
     }
+
     return _react2.default.createElement(
       'div',
       { className: cx('wrapper') },

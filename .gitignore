@@ -1,5 +1,6 @@
 package-lock.json
 template/**/yarn.lock
+packages/**/yarn.lock
 
 gs
 logs
