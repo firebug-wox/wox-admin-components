@@ -24,7 +24,7 @@ class WoxUpload extends Component {
 
       if (req) {
         if (req.rs === 1) {
-          val.url = val.response.data.url
+          val.url = val.response.data.url;
         } else {
           message.error(val.response.msg, 3);
         }
@@ -99,6 +99,7 @@ class WoxUpload extends Component {
       <Upload
         action={this.props.action}
         listType="picture-card"
+        data={this.props.data}
         beforeUpload={this.beforeUpload}
         fileList={fileList}
         onChange={this.handlePicChange}

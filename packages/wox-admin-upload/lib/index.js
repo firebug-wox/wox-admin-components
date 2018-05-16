@@ -167,6 +167,7 @@ var WoxUpload = function (_Component) {
         {
           action: this.props.action,
           listType: 'picture-card',
+          data: this.props.data,
           beforeUpload: this.beforeUpload,
           fileList: fileList,
           onChange: this.handlePicChange,
