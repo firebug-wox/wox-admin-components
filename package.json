@@ -1,6 +1,7 @@
 {
   "name": "wox-admin-components",
   "scripts": {
+    "clean": "lerna clean",
     "build": "lerna run build",
     "install": "lerna bootstrap",
     "updated": "lerna updated",
