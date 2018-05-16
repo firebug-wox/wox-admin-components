@@ -51,11 +51,11 @@ class WoxUpload extends Component {
   beforeUpload = (file) => {
     const { imgType, imgSize } = this.props;
     const defaultType = ['jpeg', 'png', 'jpg', 'gif'];
-    const isJPG = (imgType || defaultType).find(val => {
-      return file.type === `image/${val}`;
+    const isInclude = (imgType || defaultType).find(val => {
+      return file.type.split('/')[1] === val;
     });
 
-    if (!isJPG) {
+    if (!isInclude) {
       message.error(`You can only upload ${(imgType || defaultType).join('/')} file!`, 3);
       return false;
     }
@@ -64,7 +64,7 @@ class WoxUpload extends Component {
       message.error(`Image must smaller than ${imgSize || 1024}KB!`, 3);
       return false;
     }
-    return isJPG && isLt1MB;
+    return isInclude && isLt1MB;
   }
 
   componentWillReceiveProps(nextProps) {

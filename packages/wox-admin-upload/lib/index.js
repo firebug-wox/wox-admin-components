@@ -93,11 +93,11 @@ var WoxUpload = function (_Component) {
           imgSize = _this$props.imgSize;
 
       var defaultType = ['jpeg', 'png', 'jpg', 'gif'];
-      var isJPG = (imgType || defaultType).find(function (val) {
-        return file.type === 'image/' + val;
+      var isInclude = (imgType || defaultType).find(function (val) {
+        return file.type.split('/')[1] === val;
       });
 
-      if (!isJPG) {
+      if (!isInclude) {
         _message3.default.error('You can only upload ' + (imgType || defaultType).join('/') + ' file!', 3);
         return false;
       }
@@ -106,7 +106,7 @@ var WoxUpload = function (_Component) {
         _message3.default.error('Image must smaller than ' + (imgSize || 1024) + 'KB!', 3);
         return false;
       }
-      return isJPG && isLt1MB;
+      return isInclude && isLt1MB;
     };
 
     _this.triggerChange = function (list) {
