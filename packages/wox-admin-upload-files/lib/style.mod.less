@@ -1,0 +1,15 @@
+.wrapper {
+  background-color: #f2f2f2;
+
+  .inner {
+    color: red;
+    background: url(../images/icon.png) no-repeat;    // 请默认保证图片路径为 `src/images`，否则会有编译的 bug，见less bug: https://github.com/webpack-contrib/css-loader/issues/74
+  }
+
+  :global {
+    .ant-btn {
+      font-size: 14px;
+      color: #ccc;
+    }
+  }
+}

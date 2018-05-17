@@ -71,8 +71,9 @@ class WoxUpload extends Component {
     if ('value' in nextProps) {
       const value = nextProps.value || [];
       const fileList = this.state.fileList.map(val => val.url);
+      const max = this.state.max;
 
-      if (JSON.stringify(value) === JSON.stringify(fileList)) {
+      if (JSON.stringify(max > 1 ? value : [value]) === JSON.stringify(fileList)) {
         return;
       }
       this.setState({
@@ -99,7 +100,6 @@ class WoxUpload extends Component {
       <Upload
         action={this.props.action}
         listType="picture-card"
-        data={this.props.data}
         beforeUpload={this.beforeUpload}
         fileList={fileList}
         onChange={this.handlePicChange}

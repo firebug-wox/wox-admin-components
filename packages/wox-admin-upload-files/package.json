@@ -1,7 +1,7 @@
 {
-  "name": "wox-admin-upload",
-  "version": "1.0.10",
-  "description": "upload with validate",
+  "name": "wox-admin-upload-flies",
+  "version": "1.0.1",
+  "description": "basic react component",
   "main": "lib/index.js",
   "scripts": {
     "lint": "eslint --fix ./src/**/*.jsx",
@@ -45,6 +45,7 @@
     "react-dom": "^16.0.0",
     "rimraf": "^2.6.1",
     "style-loader": "^0.20.0",
+    "url-loader": "^1.0.0",
     "webpack": "^3.0.0",
     "webpack-dashboard": "^1.0.2",
     "webpack-dev-server": "^2.0.0"
@@ -56,5 +57,6 @@
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
   },
+  "author": "",
   "license": "MIT"
 }

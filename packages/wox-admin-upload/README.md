@@ -10,7 +10,6 @@
 | imgSize | 图片大小，单位为 `KB` | Number | 1024 |
 | action | 图片上传接口 | String | |
 | max | 图片上传最大数，>1 为多图模式，默认为单图模式 | Number | 1 |
-| data | 上传所需参数或返回上传参数的方法 | object|function(file) |  无 |
 
 ## Usage
 

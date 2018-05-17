@@ -141,8 +141,9 @@ var WoxUpload = function (_Component) {
         var fileList = this.state.fileList.map(function (val) {
           return val.url;
         });
+        var max = this.state.max;
 
-        if (JSON.stringify(value) === JSON.stringify(fileList)) {
+        if (JSON.stringify(max > 1 ? value : [value]) === JSON.stringify(fileList)) {
           return;
         }
         this.setState({
@@ -167,7 +168,6 @@ var WoxUpload = function (_Component) {
         {
           action: this.props.action,
           listType: 'picture-card',
-          data: this.props.data,
           beforeUpload: this.beforeUpload,
           fileList: fileList,
           onChange: this.handlePicChange,
