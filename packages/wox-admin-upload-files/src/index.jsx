@@ -65,9 +65,9 @@ class WoxUploadFiles extends Component {
       let urlList;
 
       if (max > 1) {
-        urlList = value.map(val => val.fileUrl)
+        urlList = value.map(val => val.fileUrl);
       } else {
-        urlList = [value.fileUrl]
+        urlList = [value.fileUrl];
       }
       if (JSON.stringify(urlList) === JSON.stringify(fileList)) {
         return;

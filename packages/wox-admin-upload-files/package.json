@@ -1,6 +1,6 @@
 {
-  "name": "wox-admin-upload-flies",
-  "version": "1.0.1",
+  "name": "wox-admin-upload-files",
+  "version": "1.0.2",
   "description": "basic react component",
   "main": "lib/index.js",
   "scripts": {
