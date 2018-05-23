@@ -55,6 +55,7 @@ render(
     dataSource={data}
     bordered={true}
     rowColorDifferent={true}
+    footer={() => 'here is footer'}
   />,
   document.getElementById('app')
 );
