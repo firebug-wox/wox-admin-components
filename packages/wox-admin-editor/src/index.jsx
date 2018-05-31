@@ -29,7 +29,7 @@ const defaultToolbar = {
 
 export default class WoxEditor extends Component {
   handleChange = (value) => {
-    // 去除img标签
+    // 过滤img标签
     value = value.replace(/<img[^>]+>/g, '');
     const key = this.props.keyName || 'value';
     // quill 编辑器 默认会填充一个 <p><br></p> 标签，这里判断如果没有匹配到  <p><br></p> 之外的字符，那就把 value 设置为空

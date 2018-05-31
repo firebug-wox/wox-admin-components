@@ -1,6 +1,6 @@
 {
   "name": "wox-admin-query-form",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "basic react component",
   "main": "lib/index.js",
   "scripts": {
