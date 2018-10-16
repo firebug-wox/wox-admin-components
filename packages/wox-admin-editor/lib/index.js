@@ -58,8 +58,11 @@ var WoxEditor = function (_Component) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = WoxEditor.__proto__ || Object.getPrototypeOf(WoxEditor)).call.apply(_ref, [this].concat(args))), _this), _this.handleChange = function (value) {
+      // 过滤img标签
+      value = value.replace(/<img[^>]+>/g, '');
       var key = _this.props.keyName || 'value';
-      var rep = /[^pbr<>\/]/g; // quill 编辑器 默认会填充一个 <p><br></p> 标签，这里判断如果没有匹配到  <p><br></p> 之外的字符，那就把 value 设置为空
+      // quill 编辑器 默认会填充一个 <p><br></p> 标签，这里判断如果没有匹配到  <p><br></p> 之外的字符，那就把 value 设置为空
+      var rep = /[^pbr<>\/]/g;
 
       if (!rep.test(value)) {
         value = '';
