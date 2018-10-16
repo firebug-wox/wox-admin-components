@@ -1,7 +1,7 @@
 {
   "name": "wox-admin-upload",
-  "version": "1.0.10",
-  "description": "upload with validate",
+  "version": "1.0.13",
+  "description": " upload with validate",
   "main": "lib/index.js",
   "scripts": {
     "lint": "eslint --fix ./src/**/*.jsx",
