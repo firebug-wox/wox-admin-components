@@ -1,7 +1,7 @@
 {
   "name": "wox-admin-media-editor",
-  "version": "1.0.0",
-  "description": "basic react component",
+  "version": "1.0.1",
+  "description": " basic react component",
   "main": "lib/index.js",
   "scripts": {
     "lint": "eslint --fix ./src/**/*.jsx",
