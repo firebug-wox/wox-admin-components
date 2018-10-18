@@ -29,7 +29,7 @@ render(
 
 ## Doc
 
-#### [github]](https://github.com/margox/braft-editor)
+#### [github](https://github.com/margox/braft-editor)
 #### [使用文档](https://www.yuque.com/margox/be) 
 #### [在线演示](https://braft.margox.cn/demos/basic)
 
