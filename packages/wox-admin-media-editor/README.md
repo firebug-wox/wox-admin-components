@@ -1,4 +1,4 @@
-# wox-react-component [![image](https://img.shields.io/npm/v/wox-react-component.svg)](https://www.npmjs.com/package/wox-react-component)
+# wox-admin-media-editor [![image](https://img.shields.io/npm/v/wox-react-component.svg)](https://www.npmjs.com/package/wox-react-component)
 
 ## API
 
