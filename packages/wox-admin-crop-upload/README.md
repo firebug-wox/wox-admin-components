@@ -25,7 +25,7 @@ import WoxCropUpload from 'wox-admin-crop-upload';
   value={['www.baidu.com/images/xxx.jpg']}
   crop={{
     width: 100,   //宽度100分比， 即100%
-    aspect: 6/2,  // 宽高比
+    aspect: 5/2,  // 宽高比
     x: 0,
     y: 0
   }}
