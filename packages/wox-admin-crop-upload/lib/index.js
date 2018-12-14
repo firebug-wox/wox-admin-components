@@ -142,6 +142,7 @@ var WoxCropUpload = function (_Component) {
       _react2.default.createElement(
         _upload2.default,
         {
+          multiple: true,
           action: this.props.action,
           listType: 'picture-card',
           beforeUpload: this.beforeUpload,

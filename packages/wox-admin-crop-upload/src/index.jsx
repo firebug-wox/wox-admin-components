@@ -213,6 +213,7 @@ class WoxCropUpload extends Component {
     return(
       <div>
         <Upload
+          multiple={true}
           action={this.props.action}
           listType="picture-card"
           beforeUpload={this.beforeUpload}
