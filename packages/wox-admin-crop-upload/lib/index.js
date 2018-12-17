@@ -254,7 +254,7 @@ var _initialiseProps = function _initialiseProps() {
       _message3.default.error('You can only upload ' + imgType.join('/') + ' file!', 3);
       return false;
     }
-    var isLt10MB = file.size / 10240 < imgSize;
+    var isLt10MB = file.size / 1024 < imgSize;
     if (!isLt10MB) {
       _message3.default.error('Image must smaller than ' + imgSize + 'KB!', 3);
       return false;
@@ -328,7 +328,7 @@ var _initialiseProps = function _initialiseProps() {
             headers: { 'Content-Type': 'multipart/form-data' }
           }).then(function (res) {
             var data = res.data;
-            var list = value || [];
+            var list = max > 1 ? value : [value];
 
             if (data.rs == 1) {
               fileList.forEach(function (item, idx) {
@@ -376,7 +376,6 @@ WoxCropUpload.propTypes = {
   crop: _propTypes2.default.object,
   action: _propTypes2.default.string,
   onChange: _propTypes2.default.func,
-  value: _propTypes2.default.array,
   imgType: _propTypes2.default.array,
   imgSize: _propTypes2.default.number,
   max: _propTypes2.default.number
@@ -386,7 +385,7 @@ WoxCropUpload.defaultProps = {
   imgSize: 10240,
   imgType: ['jpg', 'png', 'jpeg', 'gif'],
   crop: {
-    aspect: 5 / 4,
+    aspect: 5 / 3,
     width: 100,
     x: 0,
     y: 0

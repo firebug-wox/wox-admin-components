@@ -71,7 +71,7 @@ class WoxCropUpload extends Component {
       message.error(`You can only upload ${(imgType).join('/')} file!`, 3);
       return false;
     }
-    const isLt10MB = file.size / 10240 < (imgSize);
+    const isLt10MB = file.size / 1024 < (imgSize);
     if (!isLt10MB) {
       message.error(`Image must smaller than ${imgSize}KB!`, 3);
       return false;
@@ -166,7 +166,7 @@ class WoxCropUpload extends Component {
             headers:{'Content-Type': 'multipart/form-data'},
           }).then(res => {
             const data = res.data;
-            let list = value || [];
+            var list = max > 1 ? value : [value];
   
             if(data.rs == 1) {
               fileList.forEach((item, idx) => {
@@ -266,7 +266,6 @@ WoxCropUpload.propTypes = {
   crop: PropTypes.object,
   action: PropTypes.string,
   onChange: PropTypes.func, 
-  value: PropTypes.array,
   imgType: PropTypes.array,
   imgSize: PropTypes.number,
   max: PropTypes.number
@@ -276,7 +275,7 @@ WoxCropUpload.defaultProps = {
   imgSize: 10240,
   imgType: ['jpg', 'png', 'jpeg', 'gif'],
   crop: {
-    aspect: 5/4,
+    aspect: 5/3,
     width: 100,
     x: 0,
     y: 0,
