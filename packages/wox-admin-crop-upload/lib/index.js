@@ -95,7 +95,8 @@ var WoxCropUpload = function (_Component) {
       crop: _this2.props.crop,
       pixelCrop: '',
       uid: '',
-      localImg: true
+      localImg: true,
+      loading: false
     };
     return _this2;
   }
@@ -133,7 +134,8 @@ var WoxCropUpload = function (_Component) {
         fileList = _state.fileList,
         max = _state.max,
         cropSrc = _state.cropSrc,
-        crop = _state.crop;
+        crop = _state.crop,
+        loading = _state.loading;
 
 
     return _react2.default.createElement(
@@ -187,7 +189,8 @@ var WoxCropUpload = function (_Component) {
               {
                 type: 'primary',
                 style: { marginRight: 20 },
-                onClick: this.getCroppedImg
+                onClick: this.getCroppedImg,
+                loading: loading
               },
               '\u88C1\u526A'
             ),
@@ -283,6 +286,9 @@ var _initialiseProps = function _initialiseProps() {
   };
 
   this.getCroppedImg = function () {
+    _this3.setState({
+      loading: true
+    });
     var _state2 = _this3.state,
         crop = _state2.crop,
         pixelCrop = _state2.pixelCrop,
@@ -348,7 +354,8 @@ var _initialiseProps = function _initialiseProps() {
             }
             _this.setState({
               cropSrc: null,
-              crop: _this.props.crop
+              crop: _this.props.crop,
+              loading: false
             });
           });
         }, 'image/jpeg');

@@ -27,7 +27,8 @@ class WoxCropUpload extends Component {
       crop: this.props.crop,
       pixelCrop: '',
       uid: '',
-      localImg: true
+      localImg: true,
+      loading: false
     };
   }
 
@@ -123,6 +124,9 @@ class WoxCropUpload extends Component {
   }
 
   getCroppedImg = () => {
+    this.setState({
+      loading: true
+    });
     const { crop, pixelCrop, uid, fileList, max, localImg, cropSrc} = this.state;
     const { action, onChange, value } = this.props;
     const _this = this;
@@ -184,7 +188,8 @@ class WoxCropUpload extends Component {
             }
             _this.setState({
               cropSrc: null,
-              crop: _this.props.crop
+              crop: _this.props.crop,
+              loading: false
             })
           });
         }, 'image/jpeg');
@@ -208,7 +213,7 @@ class WoxCropUpload extends Component {
   }
 
   render() {
-    const { fileList, max, cropSrc,  crop} = this.state;
+    const { fileList, max, cropSrc,  crop, loading} = this.state;
 
     return(
       <div>
@@ -249,6 +254,7 @@ class WoxCropUpload extends Component {
                   type="primary"
                   style={{marginRight: 20}}
                   onClick={this.getCroppedImg}
+                  loading={loading}
                 >
                   裁剪
                 </Button>
