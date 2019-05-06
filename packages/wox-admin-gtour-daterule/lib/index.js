@@ -329,7 +329,7 @@ var ItemRuleCom = function (_Component) {
 								) : dateRule.type == 2 ? _react2.default.createElement(
 										FormItem,
 										{ className: cx('hide-date') },
-										_react2.default.createElement(_datePicker2.default, { className: cx('ant-calendar-picker_'), showTime: true, disabled: this.props.disabled || false, onChange: this.onIncludeDateChange, placeholder: '', style: { width: '28px' }, allowClear: false }),
+										_react2.default.createElement(_datePicker2.default, { className: cx('ant-calendar-picker_'), showTime: false, disabled: this.props.disabled || false, onChange: this.onIncludeDateChange, placeholder: '', allowClear: false }),
 										_react2.default.createElement(
 												'ul',
 												{ className: cx('date-ul') },
@@ -351,7 +351,7 @@ var ItemRuleCom = function (_Component) {
 								) : _react2.default.createElement(
 										FormItem,
 										{ className: cx('hide-date') },
-										_react2.default.createElement(_datePicker2.default, { className: cx('ant-calendar-picker_'), showTime: true, disabled: this.props.disabled || false, onChange: this.onExcludeDateChange, placeholder: '', style: { width: '28px' }, allowClear: false }),
+										_react2.default.createElement(_datePicker2.default, { className: cx('ant-calendar-picker_'), showTime: false, disabled: this.props.disabled || false, onChange: this.onExcludeDateChange, placeholder: '', allowClear: false }),
 										_react2.default.createElement(
 												'ul',
 												{ className: cx('date-ul') },

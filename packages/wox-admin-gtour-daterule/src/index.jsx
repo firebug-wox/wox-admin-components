@@ -226,7 +226,7 @@ class ItemRuleCom extends Component {
 	          </FormItem>)
 	          : dateRule.type == 2 ?
 	            (<FormItem className={cx('hide-date')}>
-	              <DatePicker className={cx('ant-calendar-picker_')} showTime disabled={ this.props.disabled || false }  onChange={this.onIncludeDateChange} placeholder="" style={{width:'28px'}} allowClear={false}/>
+	              <DatePicker className={cx('ant-calendar-picker_')} showTime={false} disabled={ this.props.disabled || false }  onChange={this.onIncludeDateChange} placeholder="" allowClear={false}/>
 	              <ul className={cx('date-ul')}>
 	                {
 	                  dateRule.includeDates && dateRule.includeDates.length ? dateRule.includeDates.map( ( value, index ) => (
@@ -241,7 +241,7 @@ class ItemRuleCom extends Component {
 	              </ul>
 	            </FormItem>) :
 	            (<FormItem className={cx('hide-date')}>
-	              <DatePicker className={cx('ant-calendar-picker_')} showTime disabled={ this.props.disabled || false } onChange={this.onExcludeDateChange} placeholder="" style={{width:'28px'}} allowClear={false}/>
+	              <DatePicker className={cx('ant-calendar-picker_')} showTime={false} disabled={ this.props.disabled || false } onChange={this.onExcludeDateChange} placeholder="" allowClear={false}/>
 	              <ul className={cx('date-ul')}>
 	                {
 	                  dateRule.excludeDates && dateRule.excludeDates.length ? dateRule.excludeDates.map( ( value, index ) => (

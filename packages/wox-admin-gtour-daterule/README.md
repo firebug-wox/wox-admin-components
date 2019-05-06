@@ -16,7 +16,7 @@
 ## Usage
 
 ```javascript
-import WoxDateRule from 'wox-admin-gtour-daterule';
+import WoxDateRule from '@firebug-wox/wox-admin-gtour-daterule';
 
 {
   this.state.dateExpressions && this.state.dateExpressions.length ? this.state.dateExpressions.map((value, index) => (
