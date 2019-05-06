@@ -25,7 +25,7 @@
     "classnames": "^2.2.5",
     "css-loader": "^0.28.8",
     "eslint": "^3.19.0",
-    "eslint-config-wox": "^1.0.5",
+    "eslint-config-wox": "^1.0.4",
     "eslint-plugin-import": "^2.3.0",
     "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-react": "^7.0.1",
