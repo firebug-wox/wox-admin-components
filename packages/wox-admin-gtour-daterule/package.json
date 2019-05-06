@@ -1,5 +1,5 @@
 {
-  "name": "wox-admin-gtour-daterule",
+  "name": "@firebug-wox/wox-admin-gtour-daterule",
   "version": "1.0.8",
   "description": "basic react component",
   "main": "lib/index.js",
@@ -56,5 +56,19 @@
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/firebug-wox/wox-admin-components.git"
+  },
+  "author": "taichiyi <taichiyi@foxmail.com>",
+  "bugs": {
+    "url": "https://github.com/firebug-wox/wox-admin-components/issues"
+  },
+  "homepage": "https://github.com/firebug-wox/wox-admin-components#readme"
 }
